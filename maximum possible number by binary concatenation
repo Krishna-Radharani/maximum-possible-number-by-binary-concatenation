@@ -1,0 +1,27 @@
+#include<string>
+class Solution {
+public:
+    //let's convert the integers into binarydigits
+    string binaary(int value){
+        string bin="";
+        while(value>0){
+            bin=to_string(value%2)+bin;
+            value/=2;
+        }
+        return bin;
+    }
+    int maxGoodNumber(vector<int>& nums) {
+        vector<string>ans={binaary(nums[0]),binaary(nums[1]),binaary(nums[2])};
+        int maxi=0;
+        sort(ans.begin(),ans.end());
+        do{
+          string temp="";
+          for(auto i:ans){
+         temp+=i;
+          }
+        maxi=max(maxi,stoi(temp,nullptr,2));
+        }while(next_permutation(ans.begin(),ans.end()));
+
+        return maxi;
+    }
+};
